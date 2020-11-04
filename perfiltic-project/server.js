@@ -18,7 +18,7 @@ app.get("/", (req, res) => {
     res.redirect('https://accounts.spotify.com/authorize' +
         '?response_type=code' +
         '&client_id=' + client_id +
-        '&scope=' + scopes+
+        '&scope=' + scopes +
         '&redirect_uri=' + redirect_uri);
 
         console.log('ingreso a callback', req.query)

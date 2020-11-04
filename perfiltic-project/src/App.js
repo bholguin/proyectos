@@ -1,12 +1,14 @@
-import {Fragment, useEffect} from 'react'
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import React, { Fragment, Component } from 'react'
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import { connect, Provider } from 'react-redux';
 import * as actions from './01_actions/index';
 import { createStore, applyMiddleware } from 'redux';
 import ReduxPromise from 'redux-promise';
 import thunk from 'redux-thunk';
-import IndexApp from './IndexApp';
 import reducers from './02_reducers/index';
+
+import IndexApp from './IndexApp';
+
 
 const createStoreWithMiddleware = applyMiddleware(ReduxPromise, thunk)(createStore);
 
@@ -14,36 +16,37 @@ function configureStore() {
   const store = createStoreWithMiddleware(reducers);
   return store;
 }
-const store = configureStore();
 
-const RootContainerComponent = (props) => {
 
-  console.log(props)
-  useEffect(() => {
-    props.getToken();
-  },[]);
+class RootContainerComponent extends Component {
+  componentDidMount() {
+    this.props.getToken();
+    //this.props.getInfo();
+  }
+
+  render() {
     return (
       <BrowserRouter>
         <Fragment>
           <Switch>
             <Route exact path='/' component={IndexApp} />
-          </Switch>
+          </Switch> 
         </Fragment>
       </BrowserRouter>
     )
-}
-console.log(actions)
-function mapPropsToState(state, ownProps) {
-  return {
-      //auth: state.auth,
   }
 }
-connect(mapPropsToState, actions)(RootContainerComponent);
-
+function mapPropsToState(state) {
+  return {
+    auth: state.auth,
+  }
+}
+let RootContainer = (connect(mapPropsToState, actions)(RootContainerComponent));
+const store = configureStore();
 function App() {
   return (
     <Provider store={store}>
-        <RootContainerComponent />
+      <RootContainer />
     </Provider>
   );
 }
