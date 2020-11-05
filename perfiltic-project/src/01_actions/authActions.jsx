@@ -1,7 +1,6 @@
 import { constan } from '../00_utilities/constant';
 
 export const loadData = () => {
-
   return async (dispatch) => {
     const access_token = localStorage.getItem("token");
 
@@ -13,7 +12,7 @@ export const loadData = () => {
 
     const response_user = await fetch_user();
     const data_user = await response_user.json();
-    console.log(data_user,'user')
+    console.log(data_user, 'user')
     dispatch({ type: 'LOAD_USER', data: data_user });
 
     const response_playlist = await fetch_playlist(data_user.id);
@@ -23,12 +22,42 @@ export const loadData = () => {
   }
 }
 
-function fetch_playlist (id) {
-    const access_token = localStorage.getItem("token");
-    var headers = { 'Authorization': 'Bearer ' + access_token }
-    const options = {headers}
-    const url = 'https://api.spotify.com/v1/users/' + id + '/playlists';
-    return fetch(url, options)
+export const getTracks = (id) => {
+  return async (dispatch) => {
+    const response_tracks = await fetch_playlist_tracks(id);
+    const data_trcks = await response_tracks.json();
+    console.log(data_trcks);
+    dispatch({ type: 'LOAD_PLAYLIST_TRACKS', data: data_trcks.items });
+  }
+}
+
+export const closeModal = (id) => {
+  return  (dispatch) => {
+    dispatch({ type: 'CLOSE_MODAL'});
+  }
+}
+
+export const openModal = (id) => {
+  return  (dispatch) => {
+    dispatch({ type: 'OPEN_MODAL'});
+  }
+}
+
+
+function fetch_playlist_tracks(id) {
+  const access_token = localStorage.getItem("token");
+  var headers = { 'Authorization': 'Bearer ' + access_token }
+  const options = { headers }
+  const url = 'https://api.spotify.com/v1/playlists/' + id + '/tracks';
+  return fetch(url, options)
+}
+
+function fetch_playlist(id) {
+  const access_token = localStorage.getItem("token");
+  var headers = { 'Authorization': 'Bearer ' + access_token }
+  const options = { headers }
+  const url = 'https://api.spotify.com/v1/users/' + id + '/playlists';
+  return fetch(url, options)
 }
 
 
