@@ -1,6 +1,6 @@
 import { constan } from '../00_utilities/constant';
 
-export const getToken = () => {
+export const loadData = () => {
 
   return async (dispatch) => {
     const access_token = localStorage.getItem("token");
@@ -13,9 +13,22 @@ export const getToken = () => {
 
     const response_user = await fetch_user();
     const data_user = await response_user.json();
+    console.log(data_user,'user')
     dispatch({ type: 'LOAD_USER', data: data_user });
 
+    const response_playlist = await fetch_playlist(data_user.id);
+    const data_playlist = await response_playlist.json();
+    dispatch({ type: 'LOAD_PLAYLIST', data: data_playlist.items });
+
   }
+}
+
+function fetch_playlist (id) {
+    const access_token = localStorage.getItem("token");
+    var headers = { 'Authorization': 'Bearer ' + access_token }
+    const options = {headers}
+    const url = 'https://api.spotify.com/v1/users/' + id + '/playlists';
+    return fetch(url, options)
 }
 
 

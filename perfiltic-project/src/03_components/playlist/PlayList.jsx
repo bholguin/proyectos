@@ -7,26 +7,16 @@ import Typography from '@material-ui/core/Typography';
 
 function PlayList(props) {
     console.log(props, 'playlist')
-    var t = null;
-    useEffect(() => {
-        props.getPlaylist(props.user.data.id);
-
-        if(props.playlist.playlist.items!==undefined){
-            t = props.playlist.playlist.items.map((item) => {
-                <div><img src={item.images[0]} /> {item.name}
-            </div>
-            });
-        }
-    }, []);
-    console.log(props.playlist.playlist)
- 
-
 
     return (
         <Fragment>
             <Card>
                 <CardContent>
-                    {t}
+                    {
+                        props.playlist.playlist.map((item) => 
+                            <div><div><img src={item.images[0].url} /></div> {item.name}</div>
+                        )
+                    }
                 </CardContent>
             </Card>
         </Fragment>
@@ -35,7 +25,6 @@ function PlayList(props) {
 
 function mapPropsToState(state) {
     return {
-        user: state.user,
         playlist: state.playlist
     }
 }

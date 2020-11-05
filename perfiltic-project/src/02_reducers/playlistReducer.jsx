@@ -1,5 +1,5 @@
 const initialState = {
-    playlist: {},
+    playlist: [],
     errors: {},
 };
 
