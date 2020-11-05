@@ -21,7 +21,6 @@ function configureStore() {
 class RootContainerComponent extends Component {
   componentDidMount() {
     this.props.getToken();
-    //this.props.getInfo();
   }
 
   render() {

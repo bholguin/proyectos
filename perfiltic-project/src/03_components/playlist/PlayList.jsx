@@ -7,25 +7,26 @@ import Typography from '@material-ui/core/Typography';
 
 function PlayList(props) {
     console.log(props, 'playlist')
+    var t = null;
     useEffect(() => {
         props.getPlaylist(props.user.data.id);
-    },[]);
-    
+
+        if(props.playlist.playlist.items!==undefined){
+            t = props.playlist.playlist.items.map((item) => {
+                <div><img src={item.images[0]} /> {item.name}
+            </div>
+            });
+        }
+    }, []);
+    console.log(props.playlist.playlist)
+ 
+
+
     return (
         <Fragment>
             <Card>
                 <CardContent>
-        
-                    <Typography variant="h5" component="h2">
-                        {props.user.data.display_name}
-        </Typography>
-
-                    <Typography variant="body2" component="p">
-                    {props.user.data.email}
-                    </Typography>
-                    <Typography color="textSecondary">
-                    {props.user.data.id}
-        </Typography>
+                    {t}
                 </CardContent>
             </Card>
         </Fragment>

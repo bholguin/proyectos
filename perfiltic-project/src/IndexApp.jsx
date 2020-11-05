@@ -26,7 +26,6 @@ const IndexApp = () => {
                     <PlayList />
                 </Grid>
             </Grid>
-
         </Fragment>
 
     );

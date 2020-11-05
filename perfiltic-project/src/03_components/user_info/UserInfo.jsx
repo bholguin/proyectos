@@ -6,11 +6,9 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 
 function UserInfo(props) {
-
     useEffect(() => {
-        props.getInfo();
+        //props.getInfo();
     },[]);
-    console.log(props)
     return (
         <Fragment>
             <Card>
