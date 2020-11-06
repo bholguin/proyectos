@@ -18,7 +18,6 @@ export const loadData = () => {
     const response_playlist = await fetch_playlist(data_user.id);
     const data_playlist = await response_playlist.json();
     dispatch({ type: 'LOAD_PLAYLIST', data: data_playlist.items });
-
   }
 }
 
@@ -32,14 +31,14 @@ export const getTracks = (id) => {
 }
 
 export const closeModal = (id) => {
-  return  (dispatch) => {
-    dispatch({ type: 'CLOSE_MODAL'});
+  return (dispatch) => {
+    dispatch({ type: 'CLOSE_MODAL' });
   }
 }
 
-export const openModal = (id) => {
-  return  (dispatch) => {
-    dispatch({ type: 'OPEN_MODAL'});
+export const openModal = (data_list) => {
+  return (dispatch) => {
+    dispatch({ type: 'OPEN_MODAL', data_list });
   }
 }
 
@@ -69,13 +68,22 @@ function fetch_user() {
   return fetch(url, options);
 }
 
+function redirec_to_login(){
+  const url ='https://accounts.spotify.com/authorize' +
+  '?response_type=code' +
+  '&client_id=' + constan.client_id +
+  '&scope=' + constan.scopes +
+  '&redirect_uri=' + constan.redirect_uri;
+
+  window.location = url;
+}
 
 function fetch_token() {
   const access_token = localStorage.getItem("token");
   if (!access_token) {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
-    const code = urlParams.get('code');
+    const code = urlParams.get('code'); 
 
     let headers = {
       'Authorization': 'Basic ' + (new Buffer(constan.client_id + ':' + constan.client_secret).toString('base64')),

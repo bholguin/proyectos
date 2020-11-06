@@ -7,7 +7,7 @@ import ReduxPromise from 'redux-promise';
 import thunk from 'redux-thunk';
 import reducers from './02_reducers/index';
 
-import IndexApp from './IndexApp';
+import IndexApp from './03_components/indexapp/IndexApp';
 
 
 const createStoreWithMiddleware = applyMiddleware(ReduxPromise, thunk)(createStore);

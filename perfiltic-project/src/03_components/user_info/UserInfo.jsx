@@ -1,18 +1,18 @@
-import React, { Fragment, useEffect } from 'react'
+import React, { Fragment } from 'react'
 import { connect } from 'react-redux';
 import * as actions from '../../01_actions/index';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
+import Avatar from '@material-ui/core/Avatar';
 
 function UserInfo(props) {
-    useEffect(() => {
-        //props.getInfo();
-    },[]);
+ 
     return (
         <Fragment>
-            <Card>
-                <CardContent>
+            <Card className='Card-info'>
+                <Avatar className='avatar'/>
+                <CardContent className='MuiCardContent-root-userinfo'>
 
                     <Typography variant="h5" component="h2">
                         {props.user.data.display_name}

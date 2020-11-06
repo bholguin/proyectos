@@ -9,37 +9,44 @@ import CardHeader from '@material-ui/core/CardHeader';
 import IconButton from '@material-ui/core/IconButton';
 import ViewList from '@material-ui/icons/ViewList'
 import ModalTracks from '../../00_utilities/modal'
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
 
 function PlayList(props) {
     console.log(props, 'playlist')
 
     return (
         <Fragment>
-            <ModalTracks/>
-            <Card>
+            <ModalTracks />
+            <Card className='Card-content'>
                 <CardHeader
 
                     title="Play List"
                 />
                 {
                     props.playlist.playlist.map((item) =>
-                        <Card key={item.id} style={{ margin: "10px" }}>
+                        <Card key={item.id} className='Card-info-playlist'>
                             <CardContent >
-                                <div style={{ display: 'inline-flex' }}>
-                                    <img style={{ width: '150px', marin: '10px' }} src={item.images[0].url} />
-                                    <Typography gutterBottom variant="h5" component="h2">
-                                        {item.name}
-                                    </Typography>
-                                </div>
-                                <IconButton onClick={() => props.openModal()}>
-                                    <ViewList />
-                                </IconButton>
+                                <Grid container spacing={3}>
+                                    <Grid item xs={2}>
+                                        <img className='img-playlist' src={item.images[0].url} />
+                                    </Grid>
+                                    <Grid item xs={8}>
+                                        <Typography gutterBottom variant="h5" component="h2">
+                                            {item.name}
+                                        </Typography>
+                                    </Grid>
+                                    <Grid item xs={1}>
+                                        <IconButton onClick={() => props.openModal({id: item.id, pl: item.name})}>
+                                            <ViewList />
+                                        </IconButton>
+                                    </Grid>
+                                </Grid>
                             </CardContent>
                         </Card>
                     )
                 }
             </Card>
-
         </Fragment>
     );
 }

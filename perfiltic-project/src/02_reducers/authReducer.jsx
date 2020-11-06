@@ -6,7 +6,6 @@ const initialState = {
 
 
 export default function auth(state = initialState, action) {
-    console.log(action, 'action')
     switch (action.type) {
         case 'LOAD_USER_TOKEN': 
             localStorage.setItem("token", action.data.access_token);

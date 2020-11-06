@@ -10,7 +10,7 @@ export default function userReducer(state = initialState, action) {
         case 'LOAD_PLAYLIST':
             return { ...state, playlist: action.data }
         case 'LOAD_PLAYLIST_TRACKS':
-            return { ...state, playlist: action.data }
+            return { ...state,  tracks: action.data }
         default:
             return state;
     }

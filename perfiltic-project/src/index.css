@@ -1,0 +1,46 @@
+
+body{
+    background: #CCC5B9;
+}
+
+/* Index App */
+.MuiAppBar-colorPrimary{
+    background-color: #EB5E28 !important;
+    margin-bottom: 20px;
+}
+
+/* card */
+.Card-info{
+    background-color: #FFFCF2 !important;
+}
+
+.Card-info-playlist{
+    background-color: #FFFCF2 !important;
+    margin: 5px;
+}
+
+.Card-content{
+    color:  #FFFCF2 !important;
+    background-color: #252422 !important;
+}
+
+
+
+/* user info */
+.avatar{
+    margin:15px;
+    width: 80px !important;
+    height: 80px !important;
+}
+
+.MuiCardContent-root-userinfo{
+    padding-top: 0px !important;
+
+}
+
+/* playlist */
+
+.img-playlist{
+    margin: 10px;
+    width: 100px;
+}

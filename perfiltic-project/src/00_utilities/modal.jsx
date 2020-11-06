@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 
 import Dialog from '@material-ui/core/Dialog';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -29,17 +29,17 @@ function ModalTracks(props) {
                         <CloseIcon />
                     </IconButton>
                     <Typography variant="h6" >
-                        Sound
+                        {props.modal.data_list.pl}
                     </Typography>
                 </Toolbar>
             </AppBar>
             <List>
                 <ListItem button>
-                    <ListItemText primary="Phone ringtone" secondary="Titania" />
+                    <ListItemText primary="song 1" secondary="info" />
                 </ListItem>
                 <Divider />
                 <ListItem button>
-                    <ListItemText primary="Default notification ringtone" secondary="Tethys" />
+                    <ListItemText primary="Song 2" secondary="info" />
                 </ListItem>
             </List>
         </Dialog>
