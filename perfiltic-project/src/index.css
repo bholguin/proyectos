@@ -1,28 +1,28 @@
 
 body{
-    background: #CCC5B9;
+    background: #ccc9c4;
 }
 
 /* Index App */
 .MuiAppBar-colorPrimary{
-    background-color: #EB5E28 !important;
+    background-color: #1B263B!important;
     position: relative !important;
     margin-bottom: 20px;
 }
 
 /* card */
 .Card-info{
-    background-color: #FFFCF2 !important;
+    background-color: #FFFFFF !important;
 }
 
 .Card-info-playlist{
-    background-color: #FFFCF2 !important;
+    background-color: #E0E1DD !important;
     padding: 0px;
 }
 
-.Card-content{
+.Card-content-playlist{
     color:  #FFFCF2 !important;
-    background-color: #252422 !important;
+    background-color: #415A77 !important;
     padding: 15px;
 }
 

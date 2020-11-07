@@ -13,7 +13,7 @@ function PlayList(props) {
     return (
         <Fragment>
             <ModalTracks />
-            <Card className='Card-content'>
+            <Card className='Card-content-playlist'>
                 <CardHeader
                     title="Play List"
                 />
