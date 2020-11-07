@@ -1,5 +1,5 @@
 import React, { Fragment, Component } from 'react'
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { connect, Provider } from 'react-redux';
 import * as actions from './01_actions/index';
 import { createStore, applyMiddleware } from 'redux';

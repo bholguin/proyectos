@@ -12,23 +12,24 @@ export const loadData = () => {
 
     const response_user = await fetch_user();
     const data_user = await response_user.json();
-    console.log(data_user, 'user')
     dispatch({ type: 'LOAD_USER', data: data_user });
 
     const response_playlist = await fetch_playlist(data_user.id);
     const data_playlist = await response_playlist.json();
+
+    if (data_playlist.items) {
+      data_playlist.items.map(async item => {
+        if(item.tracks){
+          const response_tracks = await fetch_playlist_tracks(item.tracks.href);
+          const data_trcks = await response_tracks.json();
+          item['tracks_playlist']=data_trcks.items;
+        }
+      })
+    }
     dispatch({ type: 'LOAD_PLAYLIST', data: data_playlist.items });
   }
 }
 
-export const getTracks = (id) => {
-  return async (dispatch) => {
-    const response_tracks = await fetch_playlist_tracks(id);
-    const data_trcks = await response_tracks.json();
-    console.log(data_trcks);
-    dispatch({ type: 'LOAD_PLAYLIST_TRACKS', data: data_trcks.items });
-  }
-}
 
 export const closeModal = (id) => {
   return (dispatch) => {
@@ -43,11 +44,10 @@ export const openModal = (data_list) => {
 }
 
 
-function fetch_playlist_tracks(id) {
+function fetch_playlist_tracks(url) {
   const access_token = localStorage.getItem("token");
   var headers = { 'Authorization': 'Bearer ' + access_token }
   const options = { headers }
-  const url = 'https://api.spotify.com/v1/playlists/' + id + '/tracks';
   return fetch(url, options)
 }
 
@@ -68,22 +68,12 @@ function fetch_user() {
   return fetch(url, options);
 }
 
-function redirec_to_login(){
-  const url ='https://accounts.spotify.com/authorize' +
-  '?response_type=code' +
-  '&client_id=' + constan.client_id +
-  '&scope=' + constan.scopes +
-  '&redirect_uri=' + constan.redirect_uri;
-
-  window.location = url;
-}
-
 function fetch_token() {
   const access_token = localStorage.getItem("token");
   if (!access_token) {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
-    const code = urlParams.get('code'); 
+    const code = urlParams.get('code');
 
     let headers = {
       'Authorization': 'Basic ' + (new Buffer(constan.client_id + ':' + constan.client_secret).toString('base64')),

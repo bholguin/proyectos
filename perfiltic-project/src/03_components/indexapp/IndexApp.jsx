@@ -18,10 +18,10 @@ const IndexApp = () => {
                 </Toolbar>
             </AppBar>
             <Grid container spacing={3}>
-                <Grid item xs={4}>
+                <Grid item xs={12} lg={4} md={4}>
                     <UserInfo />
                 </Grid>
-                <Grid item xs={8}>
+                <Grid item xs={12} lg={8} md={8}>
                     <PlayList />
                 </Grid>
             </Grid>
