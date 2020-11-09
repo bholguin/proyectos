@@ -8,13 +8,13 @@ var querystring = require('querystring');
 app.use(cors());
 
 app.set('app', './src');
-const redirect_uri = 'http://192.168.1.3:3000';
+const redirect_uri = 'http://localhost:3000';
 const client_id = '901177459e7245db8b4eb580076d41f6';
 const client_secret = '2f9dbef450e94d0d8187ac4ce258629f';
 
 app.get("/", (req, res) => {
 
-    const scopes = 'user-read-private user-read-email';
+    const scopes = 'user-read-private user-read-email streaming user-modify-playback-state user-read-playback-state';
     res.redirect('https://accounts.spotify.com/authorize' +
         '?response_type=code' +
         '&client_id=' + client_id +

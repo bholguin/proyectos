@@ -51,7 +51,7 @@ function ModalTracks(props) {
                                     </Grid>
                                     <Grid item xs={3} lg={2} md={2} >
                                         <div >
-                                            <IconButton  >
+                                            <IconButton onClick={() => props.playTrack(item.track.uri)} >
                                                 <PlayCircleFilledWhiteIcon className='icon-play-modal'/>
                                             </IconButton>
                                         </div>

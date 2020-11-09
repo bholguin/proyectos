@@ -11,6 +11,11 @@ export const loadData = () => {
       dispatch({ type: 'LOAD_USER_TOKEN', data: data_token });
     }
 
+      const connect_sdk = actions.connect_sdk_spotify();
+      await connect_sdk();
+
+    
+
     const response_user = await actions.fetch_user();
     const data_user = await response_user.json();
     dispatch({ type: 'LOAD_USER', data: data_user });
@@ -29,6 +34,16 @@ export const loadData = () => {
     }
 
     dispatch({ type: 'LOAD_PLAYLIST', data: data_playlist.items });
+  }
+}
+
+export const playTrack = (uri) => {
+  return async (dispatch) => {
+    console.log(uri)
+    const response_play_tracks = await actions.play_track(uri);
+    const data_trcks_play = await response_play_tracks;
+    console.log(data_trcks_play);
+    //dispatch({ type: 'CLOSE_MODAL' });
   }
 }
 
