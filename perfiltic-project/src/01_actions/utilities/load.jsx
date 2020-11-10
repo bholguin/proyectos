@@ -25,7 +25,7 @@ export const fetch_user = () => {
 }
 
 
-export const connect_sdk_spotify = () => {
+export const load_sdk_spotify = () => {
   return new Promise(resolve => {
     if (window.Spotify) {
       resolve(window.Spotify);
@@ -35,6 +35,16 @@ export const connect_sdk_spotify = () => {
       }
     }
   })
+}
+
+export const connect_sdk_spotify = (Player) => {
+  const access_token = localStorage.getItem("token");
+  const sdk = new Player({
+    nombre: "Web Playback SDK",
+    volumen: 1.0,
+    getOAuthToken: callback => { callback(access_token); }
+  });
+  sdk.connect();
 }
 
 

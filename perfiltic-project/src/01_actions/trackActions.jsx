@@ -1,15 +1,16 @@
 import * as actions from './utilities/track';
 
-export const playTrack = (uri) => {
+export const playTrack = (data) => {
     return async (dispatch) => {
-      await actions.play_track(uri);
-      //dispatch({ type: 'CLOSE_MODAL' });
+      console.log(data, 'action');
+      await actions.play_track(data.uri);
+      dispatch({ type: 'PLAY_TRACK', data });
     }
   }
   
   export const pauseTrack = () => {
     return async (dispatch) => {
       await actions.pause_track();
-      //dispatch({ type: 'CLOSE_MODAL' });
+      dispatch({ type: 'PLAY_TRACK', data: null });
     }
   }

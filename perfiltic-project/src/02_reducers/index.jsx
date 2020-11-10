@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux';
-import auth from './authReducer';
+import auth from './loadReducer';
 import user from './userReducer';
 import playlist from './playlistReducer';
 import modal from './modaltrackTeducer';

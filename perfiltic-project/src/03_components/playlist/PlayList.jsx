@@ -29,7 +29,6 @@ function PlayList(props) {
                                     <CardMedia
                                         className='img-playlist'
                                         image={item.images[0].url}
-                                        title="Paella dish"
                                     />
                                     <IconButton  className='icon-play-playlist' onClick={() => props.openModal(item)}>
                                         <PlaylistPlayIcon />

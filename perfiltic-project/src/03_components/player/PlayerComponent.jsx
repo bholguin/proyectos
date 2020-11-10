@@ -6,39 +6,41 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
-import PlayArrowIcon from '@material-ui/icons/PlayArrow';
-import SkipNextIcon from '@material-ui/icons/SkipNext';
+import PauseIcon from '@material-ui/icons/Pause';
 
 function playerComponent(props) {
+    console.log(props, 'player')
     return (
         <Fragment>
-            <Card >
-                <div >
-                    <CardContent >
+            <Card style={{ display: 'flex' }}>
+                <div>
+                    <CardContent>
                         <Typography component="h5" variant="h5">
-                            Live From Space
+                            {props.playlist.track && props.playlist.track.name
+                                ? props.playlist.track.name : 'Select Music'}
                         </Typography>
                         <Typography variant="subtitle1" color="textSecondary">
-                            Mac Miller
+                            {props.playlist.track && props.playlist.track.artists
+                                ? props.playlist.track.artists[0].name : ''}
                         </Typography>
                     </CardContent>
-                    <div>
-                        <IconButton aria-label="previous">
-                            {true ? <SkipNextIcon /> : <SkipPreviousIcon />}
-                        </IconButton>
-                        <IconButton aria-label="play/pause">
-                            <PlayArrowIcon />
-                        </IconButton>
-                        <IconButton aria-label="next">
-                            {true ? <SkipPreviousIcon /> : <SkipNextIcon />}
-                        </IconButton>
-                    </div>
+                    {
+                        props.playlist.track ?
+                            <div>
+                                <IconButton aria-label="play/pause" onClick={() => props.pauseTrack()}>
+                                    <PauseIcon />
+                                </IconButton>
+                            </div>
+                            : ''
+                    }
+
                 </div>
-                <CardMedia
-                    image=""
-                    title="Live from space album cover"
-                />
+                {props.playlist.track && props.playlist.track.album ?
+                    <CardMedia
+                        className='img-play'
+                        image={props.playlist.track.album.images[0].url}
+
+                    /> : ''}
             </Card>
         </Fragment>
     );
@@ -46,7 +48,7 @@ function playerComponent(props) {
 
 function mapPropsToState(state) {
     return {
-        user: state.user,
+        playlist: state.playlist,
     }
 }
 

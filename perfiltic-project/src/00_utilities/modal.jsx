@@ -22,6 +22,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 function ModalTracks(props) {
+    console.log(props)
     return (
         <Dialog fullScreen open={props.modal.open} onClose={props.closeModal} TransitionComponent={Transition}>
             <AppBar>
@@ -30,14 +31,15 @@ function ModalTracks(props) {
                         <CloseIcon />
                     </IconButton>
                     <Typography variant="h6" >
-                        {props.modal.data_list.name}
+                        {props.playlist._playlist.name}
                     </Typography>
                 </Toolbar>
             </AppBar>
             <List>
-            <Divider />
-                {props.modal.data_list.tracks_playlist &&
-                    props.modal.data_list.tracks_playlist.map(item =>
+                <Divider />
+                {props.playlist._playlist &&
+                    props.playlist._playlist.tracks_playlist &&
+                    props.playlist._playlist.tracks_playlist.map(item =>
                         <div key={item.track.id} >
                             <ListItem button key={item.track.id} >
                                 <Grid container spacing={3} >
@@ -52,16 +54,19 @@ function ModalTracks(props) {
                                     </Grid>
                                     <Grid item xs={3} lg={2} md={2} >
                                         <div >
-                                            <IconButton onClick={() => props.playTrack(item.track.uri)} >
-                                                <PlayCircleFilledWhiteIcon className='icon-play-modal'/>
-                                            </IconButton>
-                                            <IconButton onClick={() => props.pauseTrack()} >
-                                                <PauseCircleFilledIcon className='icon-play-modal'/>
-                                            </IconButton>
+                                            {
+                                                !item.play_track ?
+                                                    <IconButton onClick={() => props.playTrack(item.track)} >
+                                                        <PlayCircleFilledWhiteIcon className='icon-play-modal' />
+                                                    </IconButton> :
+                                                    <IconButton onClick={() => props.pauseTrack()} >
+                                                        <PauseCircleFilledIcon className='icon-play-modal' />
+                                                    </IconButton>
+                                            }
+
                                         </div>
                                     </Grid>
                                 </Grid>
-
                             </ListItem>
                             <Divider />
                         </div>
@@ -77,7 +82,8 @@ function ModalTracks(props) {
 
 function mapPropsToState(state) {
     return {
-        modal: state.modal
+        modal: state.modal,
+        playlist: state.playlist
     }
 }
 

@@ -4,8 +4,9 @@ export const closeModal = (id) => {
     }
   }
   
-  export const openModal = (data_list) => {
+  export const openModal = (data) => {
     return (dispatch) => {
-      dispatch({ type: 'OPEN_MODAL', data_list });
+      dispatch({type: 'GET_PLAYLIST', data });
+      dispatch({ type: 'OPEN_MODAL' });
     }
   }

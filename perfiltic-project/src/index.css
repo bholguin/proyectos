@@ -45,11 +45,14 @@ body{
 .img-playlist{
     height: 250px;
 }
+.img-play{
+    width: 150px;
+    height: 150px;
+    float: right;
+}
 .icon-play-playlist{
     float: right !important;
 }
-
-
 
 
 .img-playlist-modal{

@@ -1,13 +1,12 @@
 const initialState = {
-    open: false,
-    data_list: {}
+    open: false
 };
 
 
 export default function userReducer(state = initialState, action) {
     switch (action.type) {
         case 'OPEN_MODAL':
-            return { ...state, open: true, data_list: action.data_list }
+            return { ...state, open: true}
         case 'CLOSE_MODAL':
             return { ...state, open: false }
         default:
