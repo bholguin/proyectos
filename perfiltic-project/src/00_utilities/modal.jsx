@@ -10,6 +10,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import CloseIcon from '@material-ui/icons/Close';
 import PlayCircleFilledWhiteIcon from '@material-ui/icons/PlayCircleFilledWhite';
+import PauseCircleFilledIcon from '@material-ui/icons/PauseCircleFilled';
 import Grid from '@material-ui/core/Grid';
 import Slide from '@material-ui/core/Slide';
 import { connect } from 'react-redux';
@@ -53,6 +54,9 @@ function ModalTracks(props) {
                                         <div >
                                             <IconButton onClick={() => props.playTrack(item.track.uri)} >
                                                 <PlayCircleFilledWhiteIcon className='icon-play-modal'/>
+                                            </IconButton>
+                                            <IconButton onClick={() => props.pauseTrack()} >
+                                                <PauseCircleFilledIcon className='icon-play-modal'/>
                                             </IconButton>
                                         </div>
                                     </Grid>

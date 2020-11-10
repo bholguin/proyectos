@@ -2,3 +2,8 @@
 [1105/152055.929:ERROR:directory_reader_win.cc(43)] FindFirstFile: El sistema no puede encontrar la ruta especificada. (0x3)
 [1106/162636.363:ERROR:directory_reader_win.cc(43)] FindFirstFile: El sistema no puede encontrar la ruta especificada. (0x3)
 [1106/162636.417:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\white\AppData\Local\Google\Chrome\User Data\Crashpad\attachments\7a19db61-64fb-4bdc-a5bf-d1fcaa6f4128: El sistema no puede encontrar la ruta especificada. (0x3)
+[1109/191855.792:ERROR:directory_reader_win.cc(43)] FindFirstFile: El sistema no puede encontrar la ruta especificada. (0x3)
+[1109/191855.810:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\white\AppData\Local\Google\Chrome\User Data\Crashpad\attachments\db692512-9cdc-4085-adcc-c5f159a8e21b: El sistema no puede encontrar la ruta especificada. (0x3)
+[1109/191855.814:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\white\AppData\Local\Google\Chrome\User Data\Crashpad\attachments\2c3cb213-c1d1-4125-8740-32cfa3fdca80: El sistema no puede encontrar la ruta especificada. (0x3)
+[1109/191855.820:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\white\AppData\Local\Google\Chrome\User Data\Crashpad\attachments\e1ef5c77-e6a6-45c4-8340-d9ef5946a7d5: El sistema no puede encontrar la ruta especificada. (0x3)
+[1109/191855.823:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\white\AppData\Local\Google\Chrome\User Data\Crashpad\attachments\325de0af-5943-48f9-a65a-9d024919f512: El sistema no puede encontrar la ruta especificada. (0x3)

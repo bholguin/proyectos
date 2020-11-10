@@ -24,46 +24,17 @@ export const fetch_user = () => {
   return fetch(url, options);
 }
 
-export const play_track = (uri) => {
-  const access_token = localStorage.getItem("token");
-  const device_id = localStorage.getItem("_spharmony_device_id");
-  const headers = { 'Authorization': 'Bearer ' + access_token }
-  const options = { headers, method: 'PUT', body: JSON.stringify({ uris: [uri] }) }
-  const url = 'https://api.spotify.com/v1/me/player/play?device_id=' + device_id;
-  return fetch(url, options);
-}
 
-
-export async function connect_sdk_spotify () {
-  return window.onSpotifyWebPlaybackSDKReady = () => {
-    const access_token = localStorage.getItem("token");
-    const player = new Spotify.Player({
-      name: 'Web Playback SDK Quick Start Player',
-      getOAuthToken: cb => { cb(access_token); }
-    });
-
-    // Error handling
-    player.addListener('initialization_error', ({ message }) => { console.error(message); });
-    player.addListener('authentication_error', ({ message }) => { console.error(message); });
-    player.addListener('account_error', ({ message }) => { console.error(message); });
-    player.addListener('playback_error', ({ message }) => { console.error(message); });
-
-    // Playback status updates
-    player.addListener('player_state_changed', state => { console.log(state); });
-
-    // Ready
-    player.addListener('ready', ({ device_id }) => {
-      console.log('Ready with Device ID', device_id);
-    });
-
-    // Not Ready
-    player.addListener('not_ready', ({ device_id }) => {
-      console.log('Device ID has gone offline', device_id);
-    });
-
-    player.connect();
-  };
-
+export const connect_sdk_spotify = () => {
+  return new Promise(resolve => {
+    if (window.Spotify) {
+      resolve(window.Spotify);
+    } else {
+      return window.onSpotifyWebPlaybackSDKReady = () => {
+        resolve(window.Spotify);
+      }
+    }
+  })
 }
 
 
