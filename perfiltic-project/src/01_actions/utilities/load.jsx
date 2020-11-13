@@ -54,9 +54,10 @@ export const fetch_token = () => {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const code = urlParams.get('code');
+    
 
     let headers = {
-      'Authorization': 'Basic ' + (new Buffer(constan.client_id + ':' + constan.client_secret).toString('base64')),
+      'Authorization': 'Basic ' + (new Buffer.from(constan.client_id + ':' + constan.client_secret).toString('base64')),
       'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
     }
 
