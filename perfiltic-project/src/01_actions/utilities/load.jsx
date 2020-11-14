@@ -1,4 +1,5 @@
 import { constan } from '../../00_utilities/constant';
+import { Buffer } from 'buffer';
 
 export const fetch_playlist_tracks = (url) => {
   const access_token = localStorage.getItem("token");
@@ -54,10 +55,11 @@ export const fetch_token = () => {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const code = urlParams.get('code');
-    
+
+    const buff = Buffer.from(constan.client_id + ':' + constan.client_secret).toString('base64');
 
     let headers = {
-      'Authorization': 'Basic ' + (new Buffer.from(constan.client_id + ':' + constan.client_secret).toString('base64')),
+      'Authorization': 'Basic ' + buff,
       'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
     }
 
